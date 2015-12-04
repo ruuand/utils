@@ -19,9 +19,9 @@ else
     folder=$NMAP_FOLDER
 fi
 
-for arg in $output_args
+for arg in $@
 do
-    if [[ $@ == *$arg* ]]
+    if [[ $output_args == *$arg* ]]
     then
         output_set=true
         break

@@ -6,7 +6,6 @@ sudo apt-get update
 sudo apt-get upgrade
 
 # Installing zsh, customize .zshrc
-sudo apt-get install zsh
 sudo apt-get install zsh tor
 chsh -s /bin/zsh
 
@@ -35,4 +34,3 @@ echo "source ~/.pentest_env" >> $HOME/.zshrc
 # Adding impacket examples to executables
 sudo chmod +x /usr/share/doc/python-impacket/examples/*
 sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
-

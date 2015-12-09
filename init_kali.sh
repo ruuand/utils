@@ -1,6 +1,10 @@
 #!/bin/bash
 # Shitload of stuff. Many are specific to Kali Linux v2
 
+# Updating
+sudo apt-get update
+sudo apt-get upgrade
+
 # Installing zsh, customize .zshrc
 sudo apt-get install zsh
 sudo apt-get install zsh tor
@@ -14,6 +18,10 @@ then
     sed -i 's/plugins=(\(.*\))/plugins \(\1 python\)/g' .zshrc
 fi
 
+# Setting stuff for git
+git config --global user.name 'Arnaud Abramovici'
+git config --global user.email arnaud@ruuand.fr
+
 # Settings some aliases
 echo 'alias tmp="cd /tmp"' >> $HOME/.aliases
 
@@ -25,9 +33,6 @@ echo "source ~/.alias" >> $HOME/.zshrc
 echo "source ~/.pentest_env" >> $HOME/.zshrc
 
 # Adding impacket examples to executables
-chmod +x /usr/share/doc/python-impacket/examples/*
-ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
+sudo chmod +x /usr/share/doc/python-impacket/examples/*
+sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
 
-# Updating
-apt-get update
-apt-get upgrade

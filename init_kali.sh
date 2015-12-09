@@ -3,10 +3,12 @@
 
 # Installing zsh, customize .zshrc
 sudo apt-get install zsh
+chsh -s /bin/zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]
 then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	echo "source $HOME/.aliases" >> $HOME/.zshrc
+    sed -i 's/plugins=(\(.*\))/plugins \(\1 python\)/g' .zshrc
 fi
 
 # Settings some aliases

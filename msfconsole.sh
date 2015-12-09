@@ -3,4 +3,4 @@
 # - Starts postgresql before launching console
 
 service postgresql start
-msfconsle $@
+msfconsole $@

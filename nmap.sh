@@ -6,6 +6,7 @@
 #   nmap_`date +%s`.ext
 # - If NMAP_FOLDER is set then the output file is placed in the corresponding
 #   folder. Otherwise it is placed in the current directory.
+#
 
 output_args="-oN -oX -oS -oG -oA"
 output_set=false

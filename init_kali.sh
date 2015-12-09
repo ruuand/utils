@@ -3,7 +3,10 @@
 
 # Installing zsh, customize .zshrc
 sudo apt-get install zsh
+sudo apt-get install zsh tor
 chsh -s /bin/zsh
+
+# Configuring oh-my-zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]
 then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -16,6 +19,10 @@ echo 'alias tmp="cd /tmp"' >> $HOME/.aliases
 
 # Setting locale
 echo "setxkbmap fr" >> $HOME/.zshrc
+
+# Source
+echo "source ~/.alias" >> $HOME/.zshrc
+echo "source ~/.pentest_env" >> $HOME/.zshrc
 
 # Adding impacket examples to executables
 chmod +x /usr/share/doc/python-impacket/examples/*

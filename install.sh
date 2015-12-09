@@ -1,4 +1,8 @@
 #!/bin/bash
+# This script installs several utils:
+# - Adds a symbolic from /usr/local/bin to the current repo
+# - Adds an alias for each each script
+#
 
 target_dir=/usr/local/bin
 

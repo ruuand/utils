@@ -11,10 +11,11 @@ for file in $files
 do
     if [ $file != "install.sh" ];
     then
-        if [[ ! -e $target_dir/$file ]]
+        if [[ -e $target_dir/$file ]]
         then
-            ln -s `pwd`/$file $target_dir/$file
+            unlink $target_dir/$file
         fi
+        ln -s `pwd`/$file $target_dir/$file
     fi
 done
 

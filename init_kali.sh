@@ -34,3 +34,6 @@ echo "source ~/.pentest_env" >> $HOME/.zshrc
 # Adding impacket examples to executables
 sudo chmod +x /usr/share/doc/python-impacket/examples/*
 sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
+
+# Start postresql at startup (for msf db)
+sudo rcconf --on postgresql

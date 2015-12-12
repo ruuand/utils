@@ -9,7 +9,7 @@ sudo apt-get install zsh tor shutter
 chsh -s /bin/zsh
 
 # Configuring oh-my-zsh
-if [ ! -e $HOME/.oh-my-zsh/ ]
+if [ -e $HOME/.oh-my-zsh/ ]
 then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	echo "source $HOME/.aliases" >> $HOME/.zshrc
@@ -18,7 +18,7 @@ fi
 
 # Adding .zshrc
 mv ~/.zshrc ~/.zshrc.bak.`date "+%s"`
-ln -s dotfiles/.zshrc ~/.zshrc
+ln -s `pwd`/dotfiles/.zshrc ~/.zshrc
 
 # Setting stuff for git
 git config --global user.name 'Arnaud Abramovici'
@@ -34,7 +34,7 @@ echo "setxkbmap fr" >> $HOME/.zshrc
 echo "source ~/.alias" >> $HOME/.zshrc
 
 # Setting stuff specific to Kali Linux
-if [[ `uname -a` == *'kali'*]]
+if [[ `uname -a` == *'kali'* ]]
 then
     # Source pentest_env
     echo "source ~/.pentest_env" >> $HOME/.zshrc

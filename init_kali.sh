@@ -16,6 +16,10 @@ then
     sed -i 's/plugins=(\(.*\))/plugins \(\1 python\)/g' .zshrc
 fi
 
+# Adding .zshrc
+mv ~/.zshrc ~/.zshrc.bak.`date "+%s"`
+ln -s dotfiles/.zshrc ~/.zshrc
+
 # Setting stuff for git
 git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr
@@ -26,13 +30,19 @@ echo 'alias tmp="cd /tmp"' >> $HOME/.aliases
 # Setting locale
 echo "setxkbmap fr" >> $HOME/.zshrc
 
-# Source
+# Source aliases
 echo "source ~/.alias" >> $HOME/.zshrc
-echo "source ~/.pentest_env" >> $HOME/.zshrc
 
-# Adding impacket examples to executables
-sudo chmod +x /usr/share/doc/python-impacket/examples/*
-sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
+# Setting stuff specific to Kali Linux
+if [[ `uname -a` == *'kali'*]]
+then
+    # Source pentest_env
+    echo "source ~/.pentest_env" >> $HOME/.zshrc
 
-# Start postresql at startup (for msf db)
-sudo rcconf --on postgresql
+    # Adding impacket examples to executables
+    sudo chmod +x /usr/share/doc/python-impacket/examples/*
+    sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
+
+    # Start postresql at startup (for msf db)
+    sudo rcconf --on postgresql
+fi

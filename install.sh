@@ -6,22 +6,18 @@
 
 target_dir=/usr/local/bin
 
-files=`ls`
-for file in $files
+files="wrappers/nmap.sh wrappers/script.sh iprange.py pentest.sh"
+for path in $files
 do
-    if [ $file != "install.sh" ];
+    file=`basename $path`
+    echo $target_dir/$file
+    if [[ -e $target_dir/$file ]]
     then
-        if [[ -e $target_dir/$file ]]
-        then
-            unlink $target_dir/$file
-        fi
-        ln -s `pwd`/$file $target_dir/$file
+        unlink $target_dir/$file
     fi
-done
-
-for file in $files
-do
-    echo "alias `basename $file .sh`=$file" >> $HOME/.aliases
+    ln -s `pwd`/$path $target_dir/$file
+    no_ext=`echo $file | cut -d'.' -f1`
+    echo "alias $no_ext=$file" >> $HOME/.aliases
 done
 
 temp="$(mktemp)"

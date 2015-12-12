@@ -5,8 +5,7 @@
 sudo apt-get update
 sudo apt-get upgrade
 
-# Installing zsh, customize .zshrc
-sudo apt-get install zsh tor
+sudo apt-get install zsh tor shutter
 chsh -s /bin/zsh
 
 # Configuring oh-my-zsh

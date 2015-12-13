@@ -34,7 +34,7 @@ echo "setxkbmap fr" >> $HOME/.zshrc
 echo "source ~/.alias" >> $HOME/.zshrc
 
 # Setting stuff specific to Kali Linux
-if [[ `uname -a` == *'kali'*]]
+if [[ `uname -a` == *'kali'* ]]
 then
     # Source pentest_env
     echo "source ~/.pentest_env" >> $HOME/.zshrc

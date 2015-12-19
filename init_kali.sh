@@ -1,6 +1,9 @@
 #!/bin/bash
 # Shitload of stuff. Many are specific to Kali Linux v2
 
+# Setting some variables. Might be used later.
+dropbox=true
+
 # Updating
 sudo apt-get update
 sudo apt-get upgrade
@@ -46,3 +49,12 @@ then
     # Start postresql at startup (for msf db)
     sudo rcconf --on postgresql
 fi
+
+if [[ $dropbox ]]
+then
+    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+    wget https://www.dropbox.com/download\?dl\=packages/dropbox.py\
+        -O /usr/local/bin/dropbox.py
+    echo "alias dropbox=dropbox.py" >> $HOME/.aliases
+fi
+

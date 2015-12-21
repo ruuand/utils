@@ -11,16 +11,12 @@ for path in $files
 do
     file=`basename $path`
     echo $target_dir/$file
-    if [[ -e $target_dir/$file ]]
+    if [[ -L $target_dir/$file ]]
     then
         unlink $target_dir/$file
     fi
     ln -s `pwd`/$path $target_dir/$file
     no_ext=`echo $file | cut -d'.' -f1`
-    echo "alias $no_ext=$file" >> $HOME/.aliases
+    grep -q "alias $no_ext=$file" $HOME/.aliases || \
+        echo "alias $no_ext=$file" >> $HOME/.aliases
 done
-
-temp="$(mktemp)"
-sort $HOME/.aliases | uniq > $temp
-cat $temp > $HOME/.aliases
-rm $temp

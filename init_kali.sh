@@ -5,15 +5,15 @@
 dropbox=false
 update_kali=false
 
-# Updating
+# Updating Kali
 if $update_kali 
 then
     sudo apt-get update
     sudo apt-get upgrade
 fi
 
+# Installing somt tools
 sudo apt-get install zsh tor shutter
-chsh -s /bin/zsh
 
 # Configuring oh-my-zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]
@@ -25,6 +25,7 @@ grep -q "source ~/.aliases" ~/.zshrc || \
     echo "source $HOME/.aliases" >> $HOME/.zshrc
 sed -i 's/plugins=(\(.*\))/plugins=\(\1 python\)/g' ~/.zshrc
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="theunraveler"/g' ~/.zshrc
+chsh -s /bin/zsh
 
 # Adding .vimrc
 mv ~/.vimrc ~/.vimrc.bak.`date "+%s"`
@@ -35,7 +36,9 @@ git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr
 
 # Settings some aliases
-aliases=('tmp="cd /tmp"' 'getip="curl http://ipecho.net/plain; echo;"')
+aliases=('tmp="cd /tmp"'\ 
+    'getip="curl http://ipecho.net/plain; echo;"')
+
 for a in "${aliases[@]}"
 do
     grep -q "$a" $HOME/.aliases || echo "alias $a" >> $HOME/.aliases
@@ -55,7 +58,7 @@ then
 
     # Adding impacket examples to executables
     sudo chmod +x /usr/share/doc/python-impacket/examples/*
-    sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket/
+    sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket
 
     # Start postresql at startup (for msf db)
     sudo rcconf --on postgresql

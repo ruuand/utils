@@ -13,7 +13,9 @@ then
 fi
 
 # Installing somt tools
+echo "[wait] Installing some tools"
 sudo apt-get install zsh tor shutter
+echo "[done]"
 
 # Configuring oh-my-zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]
@@ -57,11 +59,22 @@ then
     grep -q "source ~/.pentest_env" $HOME/.zshrc || echo "source ~/.pentest_env" >> $HOME/.zshrc
 
     # Adding impacket examples to executables
+    echo "[wait] Adding Impacket examples to /usr/local/bin"
     sudo chmod +x /usr/share/doc/python-impacket/examples/*
-    sudo ln -s /usr/share/doc/python-impacket/examples/ /usr/local/bin/python-impacket
+    for executable in `ls /usr/share/doc/python-impacket/examples/`
+    do
+        if [[ ! -L /usr/local/bin/$executable ]]
+        then
+        sudo ln -s /usr/share/doc/python-impacket/examples/$executable\
+            /usr/local/bin/$executable
+        fi
+    done
+    echo "[done]"
 
     # Start postresql at startup (for msf db)
+    echo "[wait] Setting some services at startup"
     sudo rcconf --on postgresql
+    echo "[done]"
 fi
 
 if $dropbox 
@@ -71,4 +84,3 @@ then
         -O /usr/local/bin/dropbox.py
     echo "alias dropbox=dropbox.py" >> $HOME/.aliases
 fi
-

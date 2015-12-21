@@ -2,11 +2,15 @@
 # Shitload of stuff. Many are specific to Kali Linux v2
 
 # Setting some variables. Might be used later.
-dropbox=true
+dropbox=false
+update_kali=false
 
 # Updating
-sudo apt-get update
-sudo apt-get upgrade
+if $update_kali 
+then
+    sudo apt-get update
+    sudo apt-get upgrade
+fi
 
 sudo apt-get install zsh tor shutter
 chsh -s /bin/zsh
@@ -15,20 +19,27 @@ chsh -s /bin/zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]
 then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-	echo "source $HOME/.aliases" >> $HOME/.zshrc
-    sed -i 's/plugins=(\(.*\))/plugins \(\1 python\)/g' .zshrc
 fi
 
-# Adding .zshrc
-mv ~/.zshrc ~/.zshrc.bak.`date "+%s"`
-ln -s `pwd`/dotfiles/.zshrc ~/.zshrc
+grep -q "source ~/.aliases" ~/.zshrc || \
+    echo "source $HOME/.aliases" >> $HOME/.zshrc
+sed -i 's/plugins=(\(.*\))/plugins=\(\1 python\)/g' ~/.zshrc
+sed -i 's/ZSH_THEME=.*/ZSH_THEME="theunraveler"/g' ~/.zshrc
+
+# Adding .vimrc
+mv ~/.vimrc ~/.vimrc.bak.`date "+%s"`
+ln -s `pwd`/dotfiles/.vimrc ~/.vimrc
 
 # Setting stuff for git
 git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr
 
 # Settings some aliases
-grep -q "alias tmp" $HOME/.aliases || echo 'alias tmp="cd /tmp"' >> $HOME/.aliases
+aliases=('tmp="cd /tmp"' 'getip="curl http://ipecho.net/plain; echo;"')
+for a in "${aliases[@]}"
+do
+    grep -q "$a" $HOME/.aliases || echo "alias $a" >> $HOME/.aliases
+done
 
 # Setting locale
 grep -q "setxkbmap fr" $HOME/.zshrc || echo "setxkbmap fr" >> $HOME/.zshrc
@@ -50,11 +61,11 @@ then
     sudo rcconf --on postgresql
 fi
 
-if [[ $dropbox ]]
+if $dropbox 
 then
     cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
     wget https://www.dropbox.com/download\?dl\=packages/dropbox.py\
         -O /usr/local/bin/dropbox.py
-    echo "# Dropbox CLI\nalias dropbox=dropbox.py" >> $HOME/.aliases
+    echo "alias dropbox=dropbox.py" >> $HOME/.aliases
 fi
 

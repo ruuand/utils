@@ -12,7 +12,7 @@ sudo apt-get install zsh tor shutter
 chsh -s /bin/zsh
 
 # Configuring oh-my-zsh
-if [ -e $HOME/.oh-my-zsh/ ]
+if [ ! -e $HOME/.oh-my-zsh/ ]
 then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	echo "source $HOME/.aliases" >> $HOME/.zshrc
@@ -28,19 +28,19 @@ git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr
 
 # Settings some aliases
-echo 'alias tmp="cd /tmp"' >> $HOME/.aliases
+grep -q "alias tmp" $HOME/.aliases || echo 'alias tmp="cd /tmp"' >> $HOME/.aliases
 
 # Setting locale
-echo "setxkbmap fr" >> $HOME/.zshrc
+grep -q "setxkbmap fr" $HOME/.zshrc || echo "setxkbmap fr" >> $HOME/.zshrc
 
 # Source aliases
-echo "source ~/.alias" >> $HOME/.zshrc
+grep -q "source ~/.alias" $HOME/.zshrc || echo "source ~/.alias" >> $HOME/.zshrc
 
-# Setting stuff specific to Kali Linux
-if [[ `uname -a` == *'kali'* ]]
+# Setting stuff specific to Kali 2 Linux
+if [[ `uname -a` == *'kali2'* ]]
 then
     # Source pentest_env
-    echo "source ~/.pentest_env" >> $HOME/.zshrc
+    grep -q "source ~/.pentest_env" $HOME/.zshrc || echo "source ~/.pentest_env" >> $HOME/.zshrc
 
     # Adding impacket examples to executables
     sudo chmod +x /usr/share/doc/python-impacket/examples/*
@@ -55,6 +55,6 @@ then
     cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
     wget https://www.dropbox.com/download\?dl\=packages/dropbox.py\
         -O /usr/local/bin/dropbox.py
-    echo "alias dropbox=dropbox.py" >> $HOME/.aliases
+    echo "# Dropbox CLI\nalias dropbox=dropbox.py" >> $HOME/.aliases
 fi
 

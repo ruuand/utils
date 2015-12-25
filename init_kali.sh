@@ -41,8 +41,10 @@ git config --global user.email arnaud@ruuand.fr
 grep -q 'set dis intel' ~/.gdbinit || echo "set dis intel"  > ~/.gdbinit
 
 # Settings some aliases
+echo "[wait] Setting aliases..."
 aliases=('tmp="cd /tmp"'\ 
     'getip="curl http://ipecho.net/plain; echo;"')
+echo "[done]"
 
 for a in "${aliases[@]}"
 do

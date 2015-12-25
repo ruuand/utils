@@ -37,6 +37,9 @@ ln -s `pwd`/dotfiles/.vimrc ~/.vimrc
 git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr
 
+# Setting stuff for gdb
+grep -q 'set dis intel' ~/.gdbinit || echo "set dis intel"  > ~/.gdbinit
+
 # Settings some aliases
 aliases=('tmp="cd /tmp"'\ 
     'getip="curl http://ipecho.net/plain; echo;"')

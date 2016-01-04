@@ -32,7 +32,7 @@ done
 if [ $output_set = false ]
 then
     while true; do
-        read -p 'What log format do you want to user ? N (Normal) / X (XML) / G (Greppable) / A (All) / C (Cancel) ' format
+        read -p 'What log format do you want to use ? N (Normal) / X (XML) / G (Greppable) / A (All) / C (Cancel) ' format
         case $format in
             [Nn]* ) output="-oN $folder/$default_filename.nmap"; break;;
             [Xx]* ) output="-oX $folder/$default_filename.xml"; break;;

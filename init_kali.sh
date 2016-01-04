@@ -83,6 +83,11 @@ then
     echo "[wait] Setting some services at startup"
     sudo rcconf --on postgresql
     echo "[done]"
+
+    # Configuring Metasploit
+    echo "[wait] Configuring metasploit"
+    msfdb init
+    echo "[done]"
 fi
 
 if $dropbox 

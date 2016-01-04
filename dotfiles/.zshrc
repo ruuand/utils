@@ -85,3 +85,6 @@ source $ZSH/oh-my-zsh.sh
 setxkbmap fr
 source ~/.aliases
 source ~/.pentest_env
+
+# Set brightness
+echo 500 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null

@@ -14,7 +14,7 @@ fi
 
 # Installing somt tools
 echo "[wait] Installing some tools"
-sudo apt-get install zsh tor shutter
+sudo apt-get install zsh tor shutter keepass2
 echo "[done]"
 
 # Configuring oh-my-zsh
@@ -51,11 +51,14 @@ do
     grep -q "$a" $HOME/.aliases || echo "alias $a" >> $HOME/.aliases
 done
 
+# Various dotfiles
+touch ~/.pentest_env
+
 # Setting locale
 grep -q "setxkbmap fr" $HOME/.zshrc || echo "setxkbmap fr" >> $HOME/.zshrc
 
 # Source aliases
-grep -q "source ~/.alias" $HOME/.zshrc || echo "source ~/.alias" >> $HOME/.zshrc
+grep -q "source ~/.aliases" $HOME/.zshrc || echo "source ~/.aliases" >> $HOME/.zshrc
 
 # Setting stuff specific to Kali 2 Linux
 if [[ `uname -a` == *'kali2'* ]]

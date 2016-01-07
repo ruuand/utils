@@ -13,6 +13,11 @@ files="wrappers/nmap.sh wrappers/script.sh iprange.py pentest.sh\
 cpan install XML::TreePP Data::Dumper Math::Round Excel::Writer::XLSX\
     Data::Table Excel::Writer::XLSX::Chart
 
+# Installs python-webkit2png
+cd python-webkit2png
+setup.py install
+cd ..
+
 # Adds each file to /usr/local/bin and creates an alias (pentest is the alias
 # for pentest.sh, iprange the alias for iprange.py, etc.
 for path in $files

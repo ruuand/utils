@@ -90,6 +90,7 @@ then
     echo "[done]"
 fi
 
+# Installing dropbox
 if $dropbox 
 then
     cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
@@ -97,3 +98,6 @@ then
         -O /usr/local/bin/dropbox.py
     echo "alias dropbox=dropbox.py" >> $HOME/.aliases
 fi
+
+# Installing Pidgin with Lync support
+apt-get install pidgin pidgin-sipe

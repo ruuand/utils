@@ -2,7 +2,6 @@
 # Shitload of stuff. Many are specific to Kali Linux v2
 
 # Setting some variables. Might be used later.
-dropbox=false
 update_kali=false
 
 # Updating Kali
@@ -88,12 +87,4 @@ then
     echo "[wait] Configuring metasploit"
     msfdb init
     echo "[done]"
-fi
-
-if $dropbox 
-then
-    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-    wget https://www.dropbox.com/download\?dl\=packages/dropbox.py\
-        -O /usr/local/bin/dropbox.py
-    echo "alias dropbox=dropbox.py" >> $HOME/.aliases
 fi

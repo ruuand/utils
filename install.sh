@@ -15,7 +15,7 @@ cpan install XML::TreePP Data::Dumper Math::Round Excel::Writer::XLSX\
 
 # Installs python-webkit2png
 cd python-webkit2png
-setup.py install
+./setup.py install
 cd ..
 
 # Adds each file to /usr/local/bin and creates an alias (pentest is the alias

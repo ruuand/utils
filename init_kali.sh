@@ -14,6 +14,7 @@ fi
 # Installing somt tools
 echo "[wait] Installing some tools"
 sudo apt-get install zsh tor shutter keepass2
+sudo pip install cheat
 echo "[done]"
 
 # Configuring oh-my-zsh

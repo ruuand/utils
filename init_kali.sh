@@ -87,5 +87,6 @@ then
     # Configuring Metasploit
     echo "[wait] Configuring metasploit"
     msfdb init
+    echo "spool /root/msf_console.log" > /root/.msf5/msfconsole.rc 
     echo "[done]"
 fi

@@ -2,7 +2,6 @@
 # Shitload of stuff. Many are specific to Kali Linux v2
 
 # Setting some variables. Might be used later.
-dropbox=false
 update_kali=false
 
 # Updating Kali
@@ -15,6 +14,7 @@ fi
 # Installing somt tools
 echo "[wait] Installing some tools"
 sudo apt-get install zsh tor shutter keepass2
+sudo pip install cheat
 echo "[done]"
 
 # Configuring oh-my-zsh
@@ -87,16 +87,8 @@ then
     # Configuring Metasploit
     echo "[wait] Configuring metasploit"
     msfdb init
+    echo "spool /root/msf_console.log" > /root/.msf5/msfconsole.rc 
     echo "[done]"
-fi
-
-# Installing dropbox
-if $dropbox 
-then
-    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-    wget https://www.dropbox.com/download\?dl\=packages/dropbox.py\
-        -O /usr/local/bin/dropbox.py
-    echo "alias dropbox=dropbox.py" >> $HOME/.aliases
 fi
 
 # Installing Pidgin with Lync support

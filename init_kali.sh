@@ -91,5 +91,7 @@ then
     echo "[done]"
 fi
 
+# Setting some ENV variables
+
 # Installing Pidgin with Lync support
 apt-get install pidgin pidgin-sipe

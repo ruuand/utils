@@ -7,7 +7,7 @@
 target_dir=/usr/local/bin
 
 files="wrappers/nmap.sh wrappers/script.sh tools/iprange.py tools/pentest.sh\
-    tools/nessus_merger.py tools/parse_nessus_xml.pl"
+    tools/nessus_merger.py tools/parse_nessus_xml.pl tools/iptables-monitor.sh"
 
 # Installs some prerequisites for parse_nessus_xml.pl
 cpan install XML::TreePP Data::Dumper Math::Round Excel::Writer::XLSX\

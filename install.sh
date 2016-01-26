@@ -6,7 +6,7 @@
 
 target_dir=/usr/local/bin
 
-files="wrappers/nmap.sh wrappers/script.sh iprange.py pentest.sh\
+files="wrappers/nmap.sh wrappers/script.sh tools/iprange.py tools/pentest.sh\
     tools/nessus_merger.py tools/parse_nessus_xml.pl"
 
 # Installs some prerequisites for parse_nessus_xml.pl

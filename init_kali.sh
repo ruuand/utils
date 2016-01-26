@@ -97,6 +97,8 @@ then
 fi
 
 # Setting some ENV variables
+grep -q "source ~/.env_vars" $HOME/.zshrc || echo "source ~/.env_vars" >> $HOME/.zshrc
+grep -q "export EDITOR=vim" $HOME/.env_vars || echo "export EDITOR=vim" >> $HOME/.env_vars
 
 # Installing Pidgin with Lync support
 apt-get install pidgin pidgin-sipe

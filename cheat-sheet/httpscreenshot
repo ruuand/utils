@@ -1,0 +1,6 @@
+# Take screenshot from http enabled ports found in http.gnmap
+# Runs in background (-p), with 50 workers. Retries once in case of faile.
+httpscreenshot -i http.gnmap -p -t 30 -w 50 -a -vH -r 1
+
+# Cluster all images in a html file
+cluster-screenshot -d screenshots_folder/

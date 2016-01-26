@@ -1,0 +1,5 @@
+# Get netbios information from an IP range
+nbtscan -r 192.168.31.0/24
+
+# Get netbios information from IP in a file, and get a CSV output
+nbtscan -r -f ip_smb.txt -s";"

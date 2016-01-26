@@ -14,8 +14,13 @@ fi
 # Installing somt tools
 echo "[wait] Installing some tools"
 sudo apt-get install zsh tor shutter keepass2
+echo "[done]"
+
+echo "[wait] Installing and setting cheat"
+ln -s `pwd`/cheat-sheet ~/.cheat
 sudo pip install cheat
 echo "[done]"
+
 
 # Configuring oh-my-zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]

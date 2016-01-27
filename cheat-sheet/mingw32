@@ -1,0 +1,2 @@
+# Cross compile an exploit for windows
+i586-mingw32msvc-gcc slmail-win-fixed.c -lws2_32 -o s.exe

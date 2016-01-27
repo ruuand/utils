@@ -1,0 +1,7 @@
+# Compress an executable file
+upx -9 nc.exe
+
+# Convert as bat file
+wine exe2bat nc.exe nc.txt
+
+# Copy / paste the content of nc.txt

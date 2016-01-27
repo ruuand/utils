@@ -93,6 +93,8 @@ then
     echo "[wait] Configuring metasploit"
     msfdb init
     echo "spool /root/msf_console.log" > /root/.msf5/msfconsole.rc 
+    grep -q "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" $HOME/.env_vars\
+        || echo "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" >> $HOME/.env_vars
     echo "[done]"
 fi
 

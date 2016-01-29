@@ -16,6 +16,7 @@ echo "[wait] Installing some tools"
 sudo apt-get install zsh tor shutter keepass2 mingw32 
 pip install pyftpdlib
 pip install python-nmap
+pip install request
 echo "[done]"
 
 echo "[wait] Installing and setting cheat"

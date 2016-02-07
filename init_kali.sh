@@ -51,13 +51,16 @@ grep -q 'set dis intel' ~/.gdbinit || echo "set dis intel"  > ~/.gdbinit
 # Settings some aliases
 echo "[wait] Setting aliases..."
 aliases=('tmp="cd /tmp"'\ 
-    'getip="curl http://ipecho.net/plain; echo;"')
-echo "[done]"
+    'getip="curl http://ipecho.net/plain; echo;"'\ 
+    'nmap_basic="nmap -sV -A -O"'\ 
+    'nmap_full="nmap -sV -A -O -p1-"'\ 
+    )
 
 for a in "${aliases[@]}"
 do
     grep -q "$a" $HOME/.aliases || echo "alias $a" >> $HOME/.aliases
 done
+echo "[done]"
 
 # Various dotfiles
 touch ~/.pentest_env

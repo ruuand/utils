@@ -2,7 +2,7 @@
 # Shitload of stuff. Many are specific to Kali Linux v2
 
 # Setting some variables. Might be used later.
-update_kali=false
+update_kali=true
 
 # Updating Kali
 if $update_kali 
@@ -11,31 +11,26 @@ then
     sudo apt-get upgrade
 fi
 
-# Installing somt tools
+# Installing some tools
 echo "[wait] Installing some tools"
-sudo apt-get install zsh tor shutter keepass2 mingw32 
+apt-get install zsh tor shutter keepass2 mingw32 
+apt-get install pidgin pidgin-sipe
 pip install pyftpdlib
 pip install python-nmap
 pip install request
 echo "[done]"
 
-echo "[wait] Installing and setting cheat"
-ln -s `pwd`/cheat-sheet ~/.cheat
-sudo pip install cheat
-echo "[done]"
-
+echo "[wait] Installing and configuring oh-my-zsh"
+chsh -s /bin/zsh
 
 # Configuring oh-my-zsh
 if [ ! -e $HOME/.oh-my-zsh/ ]
 then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 fi
-
-grep -q "source ~/.aliases" ~/.zshrc || \
-    echo "source $HOME/.aliases" >> $HOME/.zshrc
 sed -i 's/plugins=(\(.*\))/plugins=\(\1 python\)/g' ~/.zshrc
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="theunraveler"/g' ~/.zshrc
-chsh -s /bin/zsh
+echo "[done]"
 
 # Adding .vimrc
 mv ~/.vimrc ~/.vimrc.bak.`date "+%s"`
@@ -50,6 +45,8 @@ grep -q 'set dis intel' ~/.gdbinit || echo "set dis intel"  > ~/.gdbinit
 
 # Settings some aliases
 echo "[wait] Setting aliases..."
+grep -q "source ~/.aliases" ~/.zshrc || \
+    echo "source $HOME/.aliases" >> $HOME/.zshrc
 aliases=('tmp="cd /tmp"'\ 
     'getip="curl http://ipecho.net/plain; echo;"'\ 
     'nmap_basic="nmap -sV -A -O"'\ 
@@ -60,6 +57,7 @@ for a in "${aliases[@]}"
 do
     grep -q "$a" $HOME/.aliases || echo "alias $a" >> $HOME/.aliases
 done
+grep -q "source ~/.aliases" $HOME/.zshrc || echo "source ~/.aliases" >> $HOME/.zshrc
 echo "[done]"
 
 # Various dotfiles
@@ -68,8 +66,6 @@ touch ~/.pentest_env
 # Setting locale
 grep -q "setxkbmap fr" $HOME/.zshrc || echo "setxkbmap fr" >> $HOME/.zshrc
 
-# Source aliases
-grep -q "source ~/.aliases" $HOME/.zshrc || echo "source ~/.aliases" >> $HOME/.zshrc
 
 # Setting stuff specific to Kali 2 Linux
 if [[ `uname -a` == *'kali2'* ]]
@@ -107,6 +103,3 @@ fi
 # Setting some ENV variables
 grep -q "source ~/.env_vars" $HOME/.zshrc || echo "source ~/.env_vars" >> $HOME/.zshrc
 grep -q "export EDITOR=vim" $HOME/.env_vars || echo "export EDITOR=vim" >> $HOME/.env_vars
-
-# Installing Pidgin with Lync support
-apt-get install pidgin pidgin-sipe

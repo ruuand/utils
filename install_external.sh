@@ -1,13 +1,7 @@
 #!/bin/bash
 # This script installs several tools:
 
-# Install discover scripts
-if [ ! -e /opt/discover/ ]
-then
-    git clone https://github.com/leebaird/discover.git /opt/discover
-    cd /opt/discover && ./update.sh
-fi
-
+echo "[wait] Installing httpscreenshot"
 if [ ! -e /opt/httpscreenshot/ ]
 then
     pip install selenium
@@ -18,3 +12,4 @@ then
     ln -s /opt/httpscreenshot/screenshotClustering/cluster.py\
         /usr/local/bin/cluster-screenshot
 fi
+echo "[done]"

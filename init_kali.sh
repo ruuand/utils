@@ -18,6 +18,7 @@ apt-get install pidgin pidgin-sipe
 pip install pyftpdlib
 pip install python-nmap
 pip install request
+pip install pwntools
 echo "[done]"
 
 echo "[wait] Installing and configuring oh-my-zsh"

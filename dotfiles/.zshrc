@@ -82,9 +82,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 setxkbmap fr
 source ~/.aliases
-source ~/.pentest_env
+source ~/.env_vars
 
 # Set brightness
 echo 500 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null

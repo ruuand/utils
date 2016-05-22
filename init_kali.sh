@@ -41,66 +41,28 @@ ln -s `pwd`/dotfiles/.vimrc ~/.vimrc
 git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr
 
-# Setting stuff for gdb
-grep -q 'set dis intel' ~/.gdbinit || echo "set dis intel"  > ~/.gdbinit
-
-# Settings some aliases
-echo "[wait] Setting aliases..."
-grep -q "source ~/.aliases" ~/.zshrc || \
-    echo "source $HOME/.aliases" >> $HOME/.zshrc
-aliases=('tmp="cd /tmp"'\ 
-    'getip="curl http://ipecho.net/plain; echo;"'\ 
-    'nmap_basic="nmap -sV -A -O"'\ 
-    'nmap_full="nmap -sV -A -O -p1-"'\ 
-    )
-
-for a in "${aliases[@]}"
+# Adding impacket examples to executables
+echo "[wait] Adding Impacket examples to /usr/local/bin"
+sudo chmod +x /usr/share/doc/python-impacket/examples/*
+for executable in `ls /usr/share/doc/python-impacket/examples/`
 do
-    grep -q "$a" $HOME/.aliases || echo "alias $a" >> $HOME/.aliases
+    if [[ ! -L /usr/local/bin/$executable ]]
+    then
+    sudo ln -s /usr/share/doc/python-impacket/examples/$executable\
+        /usr/local/bin/$executable
+    fi
 done
-grep -q "source ~/.aliases" $HOME/.zshrc || echo "source ~/.aliases" >> $HOME/.zshrc
 echo "[done]"
 
-# Various dotfiles
-touch ~/.pentest_env
+# Start postresql at startup (for msf db)
+echo "[wait] Setting some services at startup"
+sudo rcconf --on postgresql
+echo "[done]"
 
-# Setting locale
-grep -q "setxkbmap fr" $HOME/.zshrc || echo "setxkbmap fr" >> $HOME/.zshrc
-
-
-# Setting stuff specific to Kali 2 Linux
-if [[ `uname -a` == *'kali2'* ]]
-then
-    # Source pentest_env
-    grep -q "source ~/.pentest_env" $HOME/.zshrc || echo "source ~/.pentest_env" >> $HOME/.zshrc
-
-    # Adding impacket examples to executables
-    echo "[wait] Adding Impacket examples to /usr/local/bin"
-    sudo chmod +x /usr/share/doc/python-impacket/examples/*
-    for executable in `ls /usr/share/doc/python-impacket/examples/`
-    do
-        if [[ ! -L /usr/local/bin/$executable ]]
-        then
-        sudo ln -s /usr/share/doc/python-impacket/examples/$executable\
-            /usr/local/bin/$executable
-        fi
-    done
-    echo "[done]"
-
-    # Start postresql at startup (for msf db)
-    echo "[wait] Setting some services at startup"
-    sudo rcconf --on postgresql
-    echo "[done]"
-
-    # Configuring Metasploit
-    echo "[wait] Configuring metasploit"
-    msfdb init
-    echo "spool /root/msf_console.log" > /root/.msf5/msfconsole.rc 
-    grep -q "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" $HOME/.env_vars\
-        || echo "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" >> $HOME/.env_vars
-    echo "[done]"
-fi
-
-# Setting some ENV variables
-grep -q "source ~/.env_vars" $HOME/.zshrc || echo "source ~/.env_vars" >> $HOME/.zshrc
-grep -q "export EDITOR=vim" $HOME/.env_vars || echo "export EDITOR=vim" >> $HOME/.env_vars
+# Configuring Metasploit
+echo "[wait] Configuring metasploit"
+msfdb init
+echo "spool /root/msf_console.log" > /root/.msf5/msfconsole.rc 
+grep -q "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" $HOME/.env_vars\
+    || echo "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" >> $HOME/.env_vars
+echo "[done]"

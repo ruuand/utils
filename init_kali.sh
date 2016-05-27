@@ -37,6 +37,11 @@ echo "[done]"
 mv ~/.vimrc ~/.vimrc.bak.`date "+%s"`
 ln -s `pwd`/dotfiles/.vimrc ~/.vimrc
 
+mv ~/.zshrc ~/.zshrc.bak.`date "+%s"`
+ln -s `pwd`/dotfiles/.zshrc ~/.zshrc
+
+ln -s `pwd`/dotfiles/.aliases ~/.aliases
+
 # Setting stuff for git
 git config --global user.name 'Arnaud Abramovici'
 git config --global user.email arnaud@ruuand.fr

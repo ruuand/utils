@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/root/.oh-my-zsh
+export ZSH=/root/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -88,4 +88,4 @@ source ~/.aliases
 source ~/.env_vars
 
 # Set brightness
-echo 500 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
+#echo 500 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null

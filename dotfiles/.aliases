@@ -1,4 +1,4 @@
-tmp="cd /tmp
+tmp="cd /tmp"
 getip="curl http://ipecho.net/plain; echo;"
 nmap_basic="nmap -Pn -sV -A -O"
 nmap_full="nmap -Pn -sV -A -O -p1-"

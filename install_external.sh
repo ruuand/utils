@@ -48,3 +48,14 @@ then
     echo "[done]"
 fi
 
+cd $current_dir
+if [ ! -e /opt/pywerview ]
+then
+    echo "[wait] Installing pywerview"
+    git clone https://github.com/the-useless-one/pywerview.git /opt/pywerview
+    apt-get install pandoc
+    cd /opt/pywerview/
+    python setup.py install
+    echo "[done]"
+fi
+

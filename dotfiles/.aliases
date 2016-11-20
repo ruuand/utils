@@ -1,4 +1,4 @@
-tmp="cd /tmp"
-getip="curl http://ipecho.net/plain; echo;"
-nmap_basic="nmap -Pn -sV -A -O"
-nmap_full="nmap -Pn -sV -A -O -p1-"
+alias tmp="cd /tmp"
+alias getip="curl http://ipecho.net/plain; echo;"
+alias nmap_basic="nmap -Pn -sV -A -O"
+alias nmap_full="nmap -Pn -sV -A -O -p1-"

@@ -13,8 +13,7 @@ fi
 
 # Installing some tools
 echo "[wait] Installing some tools"
-apt-get install zsh tor shutter keepass2 mingw32 
-apt-get install pidgin pidgin-sipe
+apt-get install zsh tor shutter keepass2 mingw32 pidgin pidgin-sipe libxml2-utils
 pip install pyftpdlib
 pip install python-nmap
 pip install request

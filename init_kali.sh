@@ -40,6 +40,7 @@ mv ~/.zshrc ~/.zshrc.bak.`date "+%s"`
 ln -s `pwd`/dotfiles/.zshrc ~/.zshrc
 
 ln -s `pwd`/dotfiles/.aliases ~/.aliases
+ln -s `pwd`/dotfiles/.gdbinit ~/.gdbinit
 
 # Setting stuff for git
 git config --global user.name 'Arnaud Abramovici'

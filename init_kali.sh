@@ -2,7 +2,7 @@
 # Shitload of stuff. Many are specific to Kali Linux v2
 
 # Setting some variables. Might be used later.
-update_kali=true
+update_kali=false
 
 # Updating Kali
 if $update_kali 
@@ -59,15 +59,10 @@ do
 done
 echo "[done]"
 
-# Start postresql at startup (for msf db)
-echo "[wait] Setting some services at startup"
-sudo rcconf --on postgresql
-echo "[done]"
-
 # Configuring Metasploit
 echo "[wait] Configuring metasploit"
 msfdb init
-echo "spool /root/msf_console.log" > /root/.msf5/msfconsole.rc 
+echo "spool /root/msf_console.log" > /root/.msf4/msfconsole.rc 
 grep -q "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" $HOME/.env_vars\
     || echo "export PATH=$PATH:/usr/share/metasploit-framework/tools/exploit" >> $HOME/.env_vars
 echo "[done]"

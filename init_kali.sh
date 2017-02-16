@@ -43,7 +43,7 @@ ln -s `pwd`/dotfiles/.aliases ~/.aliases
 ln -s `pwd`/dotfiles/.gdbinit ~/.gdbinit
 
 # Setting stuff for git
-git config --global user.name 'Arnaud Abramovici'
+git config --global user.name 'Arnaud A.'
 git config --global user.email arnaud@ruuand.fr
 
 # Adding impacket examples to executables

@@ -59,3 +59,12 @@ then
     echo "[done]"
 fi
 
+cd $current_dir
+if [ ! -e /opt/EyeWitness ]
+then
+    echo "[wait] Installing EyeWitness" ]
+    git clone https://github.com/ChrisTruncer/EyeWitness /opt/EyeWitness
+    cd /opt/EyeWitness/setup/
+    ./setup.sh
+    echo "[done]"
+fi

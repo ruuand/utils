@@ -27,3 +27,4 @@ filetype indent on
 set lazyredraw
 set showmatch
 set colorcolumn=79
+set wrap

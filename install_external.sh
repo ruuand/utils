@@ -62,9 +62,15 @@ fi
 cd $current_dir
 if [ ! -e /opt/EyeWitness ]
 then
-    echo "[wait] Installing EyeWitness" ]
+    echo "[wait] Installing EyeWitness"
     git clone https://github.com/ChrisTruncer/EyeWitness /opt/EyeWitness
     cd /opt/EyeWitness/setup/
     ./setup.sh
     echo "[done]"
 fi
+
+echo "[wait] Installing amass"
+apt install golang-go snapd
+service snapd start
+snap install amass
+echo "[done]"

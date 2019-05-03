@@ -2,22 +2,12 @@
 # Shitload of stuff. Many are specific to Kali Linux v2
 
 # Setting some variables. Might be used later.
-update_kali=false
 
-# Updating Kali
-if $update_kali 
-then
-    sudo apt-get update
-    sudo apt-get upgrade
-fi
+SCRIPT_DIR=dirname ${0}
 
 # Installing some tools
 echo "[wait] Installing some tools"
-apt-get install zsh tor shutter keepass2 mingw32 pidgin pidgin-sipe libxml2-utils
-pip install pyftpdlib
-pip install python-nmap
-pip install request
-pip install pwntools
+apt install zsh keepass2
 echo "[done]"
 
 echo "[wait] Installing and configuring oh-my-zsh"
@@ -34,13 +24,12 @@ echo "[done]"
 
 # Adding .vimrc
 mv ~/.vimrc ~/.vimrc.bak.`date "+%s"`
-ln -s `pwd`/dotfiles/vimrc ~/.vimrc
+ln -s $SCRIPT_DIR/dotfiles/vimrc ~/.vimrc
 
 mv ~/.zshrc ~/.zshrc.bak.`date "+%s"`
-ln -s `pwd`/dotfiles/zshrc ~/.zshrc
+ln -s $SCRIPT_DIR/dotfiles/zshrc ~/.zshrc
 
-ln -s `pwd`/dotfiles/aliases ~/.aliases
-ln -s `pwd`/dotfiles/gdbinit ~/.gdbinit
+ln -s $SCRIPT_DIR/dotfiles/aliases ~/.aliases
 
 # Setting stuff for git
 git config --global user.name 'Arnaud A.'

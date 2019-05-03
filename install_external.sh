@@ -33,7 +33,7 @@ fi
 cd $current_dir
 if [ ! -e /opt/PowerSploit ]
 then
-    echo "[wait] Installing Powersploit"
+    echo "[wait] Cloning Powersploit"
     git clone https://github.com/PowerShellMafia/PowerSploit.git /opt/PowerSploit
     echo "[done]"
 fi
@@ -41,21 +41,10 @@ fi
 cd $current_dir
 if [ ! -e /opt/PowerShellEmpire ]
 then
-    echo "[wait] Installing Powersploit"
-    git clone https://github.com/powershellempire/empire /opt/PowerShellEmpire
-    cd /opt/PowerShellEmpire/setup
-    bash install.sh
-    echo "[done]"
-fi
-
-cd $current_dir
-if [ ! -e /opt/pywerview ]
-then
-    echo "[wait] Installing pywerview"
-    git clone https://github.com/the-useless-one/pywerview.git /opt/pywerview
-    apt-get install pandoc
-    cd /opt/pywerview/
-    python setup.py install
+    echo "[wait] Installing Empire"
+    git clone https://github.com/EmpireProject/Empire.git /opt/Empire
+    cd /opt/Empire
+    bash ./setup/install.sh
     echo "[done]"
 fi
 
@@ -68,9 +57,3 @@ then
     ./setup.sh
     echo "[done]"
 fi
-
-echo "[wait] Installing amass"
-apt install golang-go snapd
-service snapd start
-snap install amass
-echo "[done]"

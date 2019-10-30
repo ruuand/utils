@@ -3,7 +3,7 @@
 
 # Setting some variables. Might be used later.
 
-SCRIPT_DIR=dirname ${0}
+SCRIPT_DIR=realpath ${0}
 
 # Installing some tools
 echo "[wait] Installing some tools"
@@ -32,21 +32,8 @@ ln -s $SCRIPT_DIR/dotfiles/zshrc ~/.zshrc
 ln -s $SCRIPT_DIR/dotfiles/aliases ~/.aliases
 
 # Setting stuff for git
-git config --global user.name 'Arnaud A.'
+git config --global user.name 'ruuand'
 git config --global user.email arnaud@ruuand.fr
-
-# Adding impacket examples to executables
-echo "[wait] Adding Impacket examples to /usr/local/bin"
-sudo chmod +x /usr/share/doc/python-impacket/examples/*
-for executable in `ls /usr/share/doc/python-impacket/examples/`
-do
-    if [[ ! -L /usr/local/bin/$executable ]]
-    then
-    sudo ln -s /usr/share/doc/python-impacket/examples/$executable\
-        /usr/local/bin/$executable
-    fi
-done
-echo "[done]"
 
 # Configuring Metasploit
 echo "[wait] Configuring metasploit"

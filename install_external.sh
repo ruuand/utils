@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script installs several tools:
+# This script installs several tools
 
 current_dir=$(pwd)
 if [ ! -e /opt/httpscreenshot/ ]
@@ -55,5 +55,15 @@ then
     git clone https://github.com/ChrisTruncer/EyeWitness /opt/EyeWitness
     cd /opt/EyeWitness/setup/
     ./setup.sh
+    echo "[done]"
+fi
+
+cd $current_dir
+if [ ! -e /opt/impacket ]
+then
+    echo "[wait] Installing impacket"
+    git clone https://github.com/ruuand/impacket.git /opt/impacket
+    cd /opt/impacket
+    python setup.py install
     echo "[done]"
 fi

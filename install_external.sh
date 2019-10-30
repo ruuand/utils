@@ -67,3 +67,33 @@ then
     python setup.py install
     echo "[done]"
 fi
+
+cd $current_dir
+if [ ! -e /opt/CrackMapExec ]
+then
+    echo "[wait] Installing CrackMapExec"
+    git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec /opt/CrackMapExec
+    cd /opt/CrackMapExec
+    python setup.py install
+    echo "[done]"
+fi
+
+cd $current_dir
+if [ ! -e /opt/mitm6 ]
+then
+    echo "[wait] Installing mitm6"
+    git clone https://github.com/fox-it/mitm6.git /opt/mitm6
+    cd /opt/mitm6
+    pip install .
+    echo "[done]"
+fi
+
+cd $current_dir
+if [ ! -e /opt/aclpwn.py ]
+then
+    echo "[wait] Installing aclpwn.py"
+    git clone https://github.com/fox-it/aclpwn.py.git /opt/aclpwn.py
+    cd /opt/aclpwn.py
+    pip install .
+    echo "[done]"
+fi

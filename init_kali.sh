@@ -7,7 +7,7 @@ SCRIPT_DIR=realpath ${0}
 
 # Installing some tools
 echo "[wait] Installing some tools"
-apt install zsh keepass2
+apt install zsh keepass2 bloodhound
 echo "[done]"
 
 echo "[wait] Installing and configuring oh-my-zsh"
